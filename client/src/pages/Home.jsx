@@ -1,174 +1,167 @@
-import {
-  Brain,
-  Target,
-  Map,
-  FileText,
-  Sparkles,
-  ArrowRight
-} from "lucide-react"
+import { Sparkles, Brain, FileText, Target, Map, ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom"
 
 function Home() {
   return (
-    <div className="bg-[#F7F4EF] min-h-screen">
-      <nav className="flex items-center justify-between px-10 py-6">
-        <h1 className="text-2xl font-black text-[#1E1B4B] flex items-center gap-2">
-          <Sparkles className="text-[#FF6B4A]" />
-          SkillSync AI
-        </h1>
+    <div className="min-h-screen bg-[#090111] text-white overflow-hidden relative">
 
-        <Link
-          to="/login"
-          className="bg-[#FF6B4A] hover:scale-105 transition-all duration-300 text-white px-5 py-2 rounded-xl font-semibold shadow-lg"
-        >
-          Login
-        </Link>
-      </nav>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(147,51,234,0.30),transparent_32%),radial-gradient(circle_at_15%_85%,rgba(217,70,239,0.18),transparent_30%)]"></div>
 
-      <section className="px-10 py-16 flex flex-col lg:flex-row items-center justify-between gap-14">
-        <div className="max-w-2xl">
-          <p className="text-[#FF6B4A] font-bold mb-4 text-lg">
-            AI Career Intelligence Platform
-          </p>
+      <div className="relative max-w-[1400px] mx-auto px-8 py-7">
 
-          <h1 className="text-6xl font-black text-[#1E1B4B] leading-tight">
-            Build your future career with AI guidance 🚀
-          </h1>
+        <nav className="flex items-center justify-between rounded-[38px] border border-white/10 bg-white/[0.04] backdrop-blur-2xl px-8 py-5 shadow-[0_0_40px_rgba(168,85,247,0.15)]">
 
-          <p className="mt-6 text-lg text-gray-600 leading-8">
-            Upload your resume, analyze your skills, discover missing technologies,
-            and get a personalized roadmap for your dream job.
-          </p>
+          <div className="flex items-center gap-4">
 
-          <div className="mt-8 flex gap-4 flex-wrap">
-            <Link
-              to="/register"
-              className="bg-[#FF6B4A] hover:scale-105 transition-all duration-300 text-white px-7 py-4 rounded-2xl font-bold shadow-lg flex items-center gap-2"
-            >
-              Start Career Analysis
-              <ArrowRight size={20} />
-            </Link>
-
-            <button className="bg-white border border-orange-200 hover:bg-orange-50 transition-all duration-300 px-7 py-4 rounded-2xl font-bold text-[#1E1B4B]">
-              Explore Features
-            </button>
-          </div>
-        </div>
-
-        <div className="bg-white w-full max-w-md rounded-[30px] p-8 shadow-2xl border border-orange-100 hover:-translate-y-2 transition-all duration-500">
-          <div className="flex items-center gap-3">
-            <div className="bg-[#FFE7DD] p-3 rounded-2xl">
-              <Brain className="text-[#FF6B4A]" />
+            <div className="h-12 w-12 rounded-2xl bg-purple-500/20 flex items-center justify-center">
+              <Sparkles className="text-purple-300" size={24} />
             </div>
 
-            <h2 className="text-2xl font-black text-[#1E1B4B]">
-              Career Report
-            </h2>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              SkillSync AI
+            </h1>
+
           </div>
 
-          <div className="mt-8 space-y-6">
-            <div>
-              <div className="flex justify-between mb-2 font-semibold">
-                <span>Resume Score</span>
-                <span>82%</span>
-              </div>
-              <div className="w-full h-3 bg-orange-100 rounded-full">
-                <div className="w-[82%] h-3 bg-[#FF6B4A] rounded-full"></div>
-              </div>
-            </div>
+          <Link
+            to="/login"
+            className="rounded-2xl bg-gradient-to-r from-purple-500 to-violet-600 px-6 py-3 text-sm font-semibold shadow-[0_0_30px_rgba(168,85,247,0.35)] hover:scale-105 transition-all"
+          >
+            Login
+          </Link>
 
-            <div>
-              <div className="flex justify-between mb-2 font-semibold">
-                <span>Frontend Skills</span>
-                <span>91%</span>
-              </div>
-              <div className="w-full h-3 bg-orange-100 rounded-full">
-                <div className="w-[91%] h-3 bg-[#1E1B4B] rounded-full"></div>
-              </div>
-            </div>
+        </nav>
 
-            <div>
-              <div className="flex justify-between mb-2 font-semibold">
-                <span>Interview Readiness</span>
-                <span>68%</span>
-              </div>
-              <div className="w-full h-3 bg-orange-100 rounded-full">
-                <div className="w-[68%] h-3 bg-green-500 rounded-full"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-10 py-16">
-        <h2 className="text-4xl font-black text-center text-[#1E1B4B]">
-          Everything you need to become job-ready
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-8 mt-14">
-          <div className="bg-white p-8 rounded-[28px] shadow-md hover:-translate-y-2 transition-all duration-500">
-            <div className="bg-[#FFE7DD] w-fit p-4 rounded-2xl">
-              <FileText className="text-[#FF6B4A]" />
-            </div>
-            <h3 className="text-2xl font-bold text-[#1E1B4B] mt-6">
-              Resume Intelligence
-            </h3>
-            <p className="mt-4 text-gray-600 leading-7">
-              AI analyzes your resume and identifies missing skills and ATS weaknesses.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-[28px] shadow-md hover:-translate-y-2 transition-all duration-500">
-            <div className="bg-[#E8E7FF] w-fit p-4 rounded-2xl">
-              <Target className="text-[#1E1B4B]" />
-            </div>
-            <h3 className="text-2xl font-bold text-[#1E1B4B] mt-6">
-              Skill Gap Analysis
-            </h3>
-            <p className="mt-4 text-gray-600 leading-7">
-              Compare your current skills with industry-required technologies.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-[28px] shadow-md hover:-translate-y-2 transition-all duration-500">
-            <div className="bg-[#DCFCE7] w-fit p-4 rounded-2xl">
-              <Map className="text-green-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-[#1E1B4B] mt-6">
-              AI Career Roadmap
-            </h3>
-            <p className="mt-4 text-gray-600 leading-7">
-              Get personalized learning paths and interview preparation plans.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-10 py-10">
-        <div className="bg-[#1E1B4B] rounded-[32px] p-10 grid md:grid-cols-3 gap-8 text-white">
-          <div>
-            <h1 className="text-5xl font-black">10K+</h1>
-            <p className="mt-3 text-gray-300">Career reports generated</p>
-          </div>
+        <section className="grid lg:grid-cols-2 gap-20 items-center pt-24 min-h-[85vh]">
 
           <div>
-            <h1 className="text-5xl font-black">95%</h1>
-            <p className="mt-3 text-gray-300">Resume improvement accuracy</p>
+
+            <p className="text-purple-300 text-base font-semibold mb-5 tracking-wide">
+              AI Career Intelligence Platform
+            </p>
+
+            <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] max-w-2xl tracking-tight">
+              Build your career with smart AI guidance
+            </h1>
+
+            <p className="mt-7 text-lg leading-8 text-purple-100/70 max-w-2xl">
+              Upload your resume, analyze your skills, discover missing technologies,
+              and get a personalized roadmap for your dream job.
+            </p>
+
+            <div className="mt-10 flex flex-wrap gap-5">
+
+              <Link
+                to="/register"
+                className="flex items-center gap-3 rounded-2xl bg-gradient-to-r from-purple-500 to-violet-600 px-7 py-4 text-sm font-semibold shadow-[0_0_35px_rgba(168,85,247,0.35)] hover:scale-105 transition-all"
+              >
+                Start Career Analysis
+                <ArrowRight size={18} />
+              </Link>
+
+              <Link
+                to="/dashboard"
+                className="rounded-2xl border border-white/15 bg-white/[0.04] px-7 py-4 text-sm font-semibold backdrop-blur-xl hover:bg-white/10 transition-all"
+              >
+                Explore Features
+              </Link>
+
+            </div>
+
           </div>
 
-          <div>
-            <h1 className="text-5xl font-black">500+</h1>
-            <p className="mt-3 text-gray-300">AI-generated learning roadmaps</p>
-          </div>
-        </div>
-      </section>
+          <div className="rounded-[38px] border border-white/10 bg-white/[0.04] backdrop-blur-2xl p-10 shadow-[0_0_70px_rgba(168,85,247,0.18)]">
 
-      <footer className="px-10 py-10 text-center text-gray-500">
-        <h1 className="text-2xl font-black text-[#1E1B4B]">
-          SkillSync AI
-        </h1>
-        <p className="mt-3">Build smarter careers with AI guidance 🚀</p>
-      </footer>
+            <div className="flex items-center gap-4 mb-8">
+
+              <div className="h-14 w-14 rounded-2xl bg-purple-500/20 flex items-center justify-center">
+                <Brain className="text-purple-300" size={28} />
+              </div>
+
+              <h2 className="text-3xl font-semibold">
+                Career Report
+              </h2>
+
+            </div>
+
+            {[
+              ["Resume Score", "82%", "w-[82%]"],
+              ["Frontend Skills", "91%", "w-[91%]"],
+              ["Interview Readiness", "68%", "w-[68%]"]
+            ].map((item, index) => (
+              <div key={index} className="mb-7">
+
+                <div className="flex justify-between text-sm mb-3 text-purple-100/80">
+                  <span>{item[0]}</span>
+                  <span>{item[1]}</span>
+                </div>
+
+                <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+
+                  <div
+                    className={`${item[2]} h-full rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-400`}
+                  ></div>
+
+                </div>
+
+              </div>
+            ))}
+
+          </div>
+
+        </section>
+
+        <section className="pt-24 pb-16">
+
+          <h2 className="text-center text-4xl md:text-5xl font-bold">
+            Everything you need to become job-ready
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8 mt-14">
+
+            {[
+              {
+                icon: <FileText />,
+                title: "Resume Intelligence",
+                text: "AI checks your resume score, missing skills, and ATS readiness."
+              },
+              {
+                icon: <Target />,
+                title: "Skill Gap Analysis",
+                text: "Compare your skills with the technologies required for your target role."
+              },
+              {
+                icon: <Map />,
+                title: "Career Roadmap",
+                text: "Get a clear step-by-step learning path for your career goal."
+              }
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="rounded-[30px] border border-white/10 bg-white/[0.04] backdrop-blur-2xl p-8 hover:bg-white/10 transition-all"
+              >
+
+                <div className="h-14 w-14 rounded-2xl bg-purple-500/20 flex items-center justify-center text-purple-300">
+                  {item.icon}
+                </div>
+
+                <h3 className="text-2xl font-semibold mt-6">
+                  {item.title}
+                </h3>
+
+                <p className="text-base text-purple-100/65 leading-7 mt-4">
+                  {item.text}
+                </p>
+
+              </div>
+            ))}
+
+          </div>
+
+        </section>
+
+      </div>
+
     </div>
   )
 }

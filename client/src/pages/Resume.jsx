@@ -1,14 +1,8 @@
 import { useState } from "react"
 import axios from "axios"
-import {
-  Upload,
-  Sparkles,
-  LoaderCircle,
-  CheckCircle
-} from "lucide-react"
+import { Upload, Sparkles, LoaderCircle, CheckCircle } from "lucide-react"
 
 function Resume() {
-
   const [file, setFile] = useState(null)
   const [fileName, setFileName] = useState("")
   const [isAnalyzing, setIsAnalyzing] = useState(false)
@@ -16,7 +10,6 @@ function Resume() {
   const [analysisData, setAnalysisData] = useState(null)
 
   const handleFileChange = (event) => {
-
     const selectedFile = event.target.files[0]
 
     if (selectedFile) {
@@ -28,7 +21,6 @@ function Resume() {
   }
 
   const handleAnalyze = async () => {
-
     if (!file) return
 
     setIsAnalyzing(true)
@@ -38,241 +30,146 @@ function Resume() {
     formData.append("resume", file)
 
     try {
-
       const response = await axios.post(
-        "http://localhost:5000/api/resume/upload",
+        "https://skillsync-ai-zotx.onrender.com/api/resume/upload",
         formData
       )
 
       setSuccessMessage(response.data.message)
-
       setAnalysisData(response.data.analysis)
-
       setIsAnalyzing(false)
-
     } catch (error) {
-
       console.log(error)
-
       setSuccessMessage("Resume upload failed. Please try again.")
-
       setIsAnalyzing(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F4EF] p-10">
+    <div className="min-h-screen bg-[#080014] text-white overflow-hidden relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(147,51,234,0.35),transparent_32%),radial-gradient(circle_at_15%_85%,rgba(217,70,239,0.22),transparent_30%)]"></div>
 
-      <div className="flex items-center justify-between">
+      <div className="relative max-w-7xl mx-auto px-10 py-8">
+        <nav className="flex items-center justify-between rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl px-8 py-5">
+          <div className="flex items-center gap-4">
+            <div className="h-12 w-12 rounded-2xl bg-purple-500/20 flex items-center justify-center">
+              <Sparkles className="text-purple-300" size={24} />
+            </div>
+            <h1 className="text-2xl font-semibold">SkillSync AI</h1>
+          </div>
+        </nav>
 
-        <div>
+        <section className="pt-20 grid lg:grid-cols-2 gap-14 items-center">
+          <div>
+            <p className="text-purple-300 text-base font-semibold mb-5">
+              Resume Intelligence
+            </p>
 
-          <h1 className="text-5xl font-black text-[#1E1B4B]">
-            Resume Intelligence
-          </h1>
+            <h1 className="text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight max-w-2xl">
+              Analyze your resume with AI
+            </h1>
 
-          <p className="text-gray-600 mt-4">
-            Upload your resume and get AI-powered ATS analysis.
-          </p>
-
-        </div>
-
-        <div className="bg-white p-4 rounded-2xl shadow-md">
-          <Sparkles className="text-[#FF6B4A]" />
-        </div>
-
-      </div>
-
-      <div className="bg-white mt-10 p-10 rounded-[30px] shadow-md border border-orange-100">
-
-        <div className="border-2 border-dashed border-orange-200 rounded-[24px] p-16 text-center bg-[#FFF8F5]">
-
-          <div className="bg-[#FFE7DD] w-fit mx-auto p-5 rounded-3xl">
-            <Upload className="text-[#FF6B4A]" size={40} />
+            <p className="mt-7 text-lg leading-8 text-purple-100/70 max-w-2xl">
+              Upload your PDF resume and get ATS score, missing skills, strong skills,
+              career summary and recommended role instantly.
+            </p>
           </div>
 
-          <h2 className="text-3xl font-black text-[#1E1B4B] mt-6">
-            Upload Your Resume
-          </h2>
+          <div className="rounded-[34px] border border-white/10 bg-white/5 backdrop-blur-2xl p-10 shadow-[0_0_70px_rgba(168,85,247,0.18)]">
+            <div className="text-center">
+              <div className="h-20 w-20 rounded-3xl bg-purple-500/20 flex items-center justify-center text-purple-300 mx-auto">
+                <Upload size={40} />
+              </div>
 
-          <p className="text-gray-500 mt-3 text-lg">
-            Drag & drop your PDF resume here
-          </p>
+              <h2 className="text-3xl font-semibold mt-8">
+                Upload Your Resume
+              </h2>
 
-          <input
-            type="file"
-            className="hidden"
-            id="resumeUpload"
-            onChange={handleFileChange}
-          />
-
-          <label
-            htmlFor="resumeUpload"
-            className="inline-block mt-8 bg-[#FF6B4A] hover:scale-105 transition-all duration-300 text-white px-8 py-4 rounded-2xl font-bold cursor-pointer"
-          >
-            Choose Resume
-          </label>
-
-          {fileName && (
-
-            <div className="mt-6 bg-white border border-orange-200 rounded-2xl p-4 max-w-md mx-auto">
-
-              <p className="text-[#1E1B4B] font-bold">
-                Uploaded File:
+              <p className="mt-4 text-purple-100/70">
+                Choose your PDF resume for AI analysis.
               </p>
 
-              <p className="text-gray-600 mt-2 break-all">
-                {fileName}
-              </p>
-
-              <button
-                onClick={handleAnalyze}
-                className="mt-5 bg-[#1E1B4B] hover:scale-105 transition-all duration-300 text-white px-6 py-3 rounded-2xl font-bold"
-              >
-                Analyze Resume
-              </button>
-
-            </div>
-
-          )}
-
-          {isAnalyzing && (
-
-            <div className="mt-8 bg-white rounded-3xl p-8 shadow-md max-w-md mx-auto">
-
-              <LoaderCircle
-                className="animate-spin text-[#FF6B4A] mx-auto"
-                size={50}
+              <input
+                type="file"
+                className="hidden"
+                id="resumeUpload"
+                onChange={handleFileChange}
               />
 
-              <h2 className="text-2xl font-black text-[#1E1B4B] mt-5">
-                AI is analyzing your resume...
-              </h2>
+              <label
+                htmlFor="resumeUpload"
+                className="inline-block mt-8 rounded-2xl bg-gradient-to-r from-purple-500 to-violet-600 px-8 py-4 text-sm font-semibold cursor-pointer shadow-[0_0_35px_rgba(168,85,247,0.35)]"
+              >
+                Choose Resume
+              </label>
 
-              <p className="text-gray-500 mt-3">
-                Checking ATS score, missing skills, and career match.
-              </p>
+              {fileName && (
+                <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+                  <p className="font-semibold">Uploaded File</p>
+                  <p className="text-purple-100/65 mt-2 break-all text-sm">
+                    {fileName}
+                  </p>
 
+                  <button
+                    onClick={handleAnalyze}
+                    className="mt-6 rounded-2xl bg-white text-[#080014] px-7 py-3 text-sm font-bold"
+                  >
+                    Analyze Resume
+                  </button>
+                </div>
+              )}
+
+              {isAnalyzing && (
+                <div className="mt-8 rounded-2xl bg-white/[0.04] p-6">
+                  <LoaderCircle className="animate-spin text-purple-300 mx-auto" size={42} />
+                  <h2 className="text-xl font-semibold mt-5">
+                    AI is analyzing your resume...
+                  </h2>
+                  <p className="text-purple-100/65 mt-3 text-sm">
+                    Checking ATS score, missing skills and career match.
+                  </p>
+                </div>
+              )}
+
+              {successMessage && !isAnalyzing && (
+                <div className="mt-8 rounded-2xl bg-green-500/10 border border-green-400/30 p-5 flex items-center justify-center gap-3">
+                  <CheckCircle className="text-green-400" />
+                  <p className="text-green-300 font-semibold text-sm">
+                    {successMessage}
+                  </p>
+                </div>
+              )}
             </div>
+          </div>
+        </section>
 
-          )}
+        {analysisData && (
+          <section className="pt-14 pb-10">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-2xl p-8">
+                <p className="text-purple-100/65">ATS Score</p>
+                <h1 className="text-5xl font-bold text-purple-300 mt-4">
+                  {analysisData.atsScore}%
+                </h1>
+              </div>
 
-          {successMessage && !isAnalyzing && (
+              <div className="rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-2xl p-8">
+                <p className="text-purple-100/65">Recommended Role</p>
+                <h2 className="text-3xl font-semibold mt-4">
+                  {analysisData.recommendedRole}
+                </h2>
+              </div>
 
-            <div className="mt-8 bg-green-50 border border-green-200 rounded-3xl p-5 max-w-md mx-auto flex items-center justify-center gap-3">
-
-              <CheckCircle className="text-green-600" />
-
-              <p className="text-green-700 font-bold">
-                {successMessage}
-              </p>
-
+              <div className="rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-2xl p-8">
+                <p className="text-purple-100/65">Career Summary</p>
+                <p className="mt-4 text-purple-100/80 leading-7">
+                  {analysisData.summary}
+                </p>
+              </div>
             </div>
-
-          )}
-
-        </div>
-
+          </section>
+        )}
       </div>
-
-      {analysisData && (
-
-        <div className="mt-10 space-y-6">
-
-          <div className="grid md:grid-cols-3 gap-6">
-
-            <div className="bg-white p-6 rounded-[28px] shadow-md">
-
-              <p className="text-gray-500">
-                ATS Score
-              </p>
-
-              <h1 className="text-5xl font-black text-[#FF6B4A] mt-4">
-                {analysisData.atsScore}%
-              </h1>
-
-            </div>
-
-            <div className="bg-white p-6 rounded-[28px] shadow-md">
-
-              <p className="text-gray-500">
-                Recommended Role
-              </p>
-
-              <h2 className="text-3xl font-black text-[#1E1B4B] mt-4">
-                {analysisData.recommendedRole}
-              </h2>
-
-            </div>
-
-            <div className="bg-white p-6 rounded-[28px] shadow-md">
-
-              <p className="text-gray-500">
-                Career Summary
-              </p>
-
-              <p className="text-[#1E1B4B] font-semibold mt-4 leading-7">
-                {analysisData.summary}
-              </p>
-
-            </div>
-
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-
-            <div className="bg-white p-6 rounded-[28px] shadow-md">
-
-              <h2 className="text-2xl font-black text-[#1E1B4B]">
-                Missing Skills
-              </h2>
-
-              <div className="flex flex-wrap gap-3 mt-5">
-
-                {analysisData.missingSkills.map((skill, index) => (
-
-                  <span
-                    key={index}
-                    className="bg-orange-100 text-[#FF6B4A] px-4 py-2 rounded-xl font-semibold"
-                  >
-                    {skill}
-                  </span>
-
-                ))}
-
-              </div>
-
-            </div>
-
-            <div className="bg-white p-6 rounded-[28px] shadow-md">
-
-              <h2 className="text-2xl font-black text-[#1E1B4B]">
-                Strong Skills
-              </h2>
-
-              <div className="flex flex-wrap gap-3 mt-5">
-
-                {analysisData.strongSkills.map((skill, index) => (
-
-                  <span
-                    key={index}
-                    className="bg-green-100 text-green-700 px-4 py-2 rounded-xl font-semibold"
-                  >
-                    {skill}
-                  </span>
-
-                ))}
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      )}
-
     </div>
   )
 }
